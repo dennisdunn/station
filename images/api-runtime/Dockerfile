@@ -5,9 +5,9 @@ RUN npm install -g --unsafe-perm node-red \
     npm install node-red-dashboard
 VOLUME [ "/data" ]
 
-COPY data/settings.js /data/
-COPY data/flows.json /data/
-COPY data/nodes/ /data/nodes/
+COPY defaults/*.json /data/
+COPY defaults/*.js /data/
+COPY defaults/nodes/ /data/nodes/
 
 EXPOSE 1880
 ENV DATA_DIR /data

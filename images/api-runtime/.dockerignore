@@ -1,5 +1,0 @@
-data/
-!data/flows.json
-!data/settings.js
-!data/nodes/
-docker-compose.yml

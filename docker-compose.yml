@@ -26,7 +26,7 @@ services:
               source: ./config/predictd-api.flows.json
               target: /data/flows.json
         ports:
-            - "1880:1881"
+            - "1881:1880"
         networks:
             - station
     rtld-api:
@@ -37,7 +37,7 @@ services:
               source: ./config/rtld-api.flows.json
               target: /data/flows.json
         ports:
-            - "1880:1882"
+            - "1882:1880"
         networks:
             - station
 networks:
