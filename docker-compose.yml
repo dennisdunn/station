@@ -3,39 +3,27 @@ version: "3.7"
 services:
     predictd:
         image: predictd
-        build: images/predictd
+        build: ./predictd
         tty: true
-        volumes:
-            - type: bind
-              source: ./config/predict.qth
-              target: /data/predict.qth
         networks:
             - default
     rtld:
         image: rtld
-        build: images/rtld
+        build: ./rtld
         ports:
             - "9001:9001"
         networks:
             - default
     predictd-api:
-        image: api-runtime
-        build: images/api-runtime
-        volumes:
-            - type: bind
-              source: ./config/predictd-api.flows.json
-              target: /data/flows.json
+        image: predictd-api
+        build: ./predictd-api
         ports:
             - "1881:1880"
         networks:
             - default
     rtld-api:
-        image: api-runtime
-        build: images/api-runtime
-        volumes:
-            - type: bind
-              source: ./config/rtld-api.flows.json
-              target: /data/flows.json
+        image: rtld-api
+        build: ./rtld-api
         ports:
             - "1882:1880"
         networks:

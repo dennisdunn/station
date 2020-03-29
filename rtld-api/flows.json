@@ -68,7 +68,7 @@
     "z": "bfdafc03.4c5d3",
     "name": "",
     "statusCode": "",
-    "headers": {},
+    "headers": { "Access-Control-Allow-Origin": "*" },
     "x": 620,
     "y": 140,
     "wires": []
@@ -151,7 +151,7 @@
     "z": "c2f8291c.676488",
     "name": "",
     "statusCode": "",
-    "headers": {},
+    "headers": { "Access-Control-Allow-Origin": "*" },
     "x": 650,
     "y": 200,
     "wires": []
