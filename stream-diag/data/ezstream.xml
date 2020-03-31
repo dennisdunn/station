@@ -1,31 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<!--
-  EXAMPLE: A valid configuration that streams Vorbis input from STDIN as-is
-
-  This configuration streams Ogg Vorbis from standard input as-is.
-  -->
-
 <ezstream>
-
     <servers>
         <server>
             <hostname>icecast</hostname>
             <password>source</password>
         </server>
     </servers>
-
     <streams>
         <stream>
+            <stream_name>440Hz Test Tone</stream_name>
             <mountpoint>/tone</mountpoint>
             <format>mp3</format>
         </stream>
     </streams>
-
     <intakes>
         <intake>
             <filename>playlist.m3u</filename>
         </intake>
     </intakes>
-
 </ezstream>
