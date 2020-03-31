@@ -7,18 +7,19 @@ RUN git clone https://github.com/sysrun/rtl-sdr.git .; \
     cd build; \
     cmake .. -DINSTALL_UDEV_RULES=ON; \
     make; \
-    make install; 
+    make install;
 
-FROM alpine:latest
+FROM ezstream
 
-RUN apk add --no-cache libusb sox socat; \
+RUN apk add --no-cache libusb; \
     echo "blacklist dvb_usb_rtl28xxu" >> /etc/modprobe.d/blacklist.conf
 
 COPY --from=build /usr/local/bin/* /usr/local/bin/
 COPY --from=build /usr/local/lib/* /usr/local/lib/
 COPY entrypoint.sh /usr/local/bin/
+COPY ezstream.xml /etc/
+RUN chmod 640 /etc/ezstream.xml
 
 EXPOSE 6020/udp
-EXPOSE 9001
 
 CMD [ "entrypoint.sh" ]

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  EXAMPLE: A valid configuration that streams Vorbis input from STDIN as-is
+
+  This configuration streams Ogg Vorbis from standard input as-is.
+  -->
+
+<ezstream>
+
+    <servers>
+        <server>
+            <hostname>icecast</hostname>
+            <password>source</password>
+        </server>
+    </servers>
+
+    <streams>
+        <stream>
+            <mountpoint>/sdr.ogg</mountpoint>
+            <format>Ogg</format>
+            <encoder>Opus-VBR96</encoder>
+        </stream>
+    </streams>
+
+    <encoders>
+        <encoder>
+            <name>Opus-VBR96</name>
+            <format>Ogg</format>
+            <program>opusenc --vbr --bitrate 96 --title @t@ --artist @a@ --raw --raw-rate 24000 - -</program>
+        </encoder>
+    </encoders>
+
+    <intakes>
+        <intake>
+            <type>stdin</type>
+        </intake>
+    </intakes>
+
+</ezstream>

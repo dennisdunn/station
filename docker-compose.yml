@@ -6,32 +6,55 @@ services:
         build: ./predictd
         tty: true
         networks:
-            - default
-    rtld:
-        image: rtld
-        build: ./rtld
-        ports:
-            - "9001:9001"
+            sysnet:
+    sdrd:
+        image: sdrd
+        build: ./sdrd
         privileged: true
         networks:
-            - default
+            sysnet:
+        depends_on:
+            - icecast
     predictd-api:
         image: predictd-api
         build: ./predictd-api
         ports:
             - "1881:1880"
         networks:
-            - default
-    rtld-api:
-        image: rtld-api
-        build: ./rtld-api
+            sysnet:
+        depends_on:
+            - predictd
+    sdrd-api:
+        image: sdrd-api
+        build: ./sdrd-api
         ports:
             - "1882:1880"
         networks:
-            - default
-    peerd:
-        image: peerjs/peerjs-server
+            sysnet:
+        depends_on:
+            - sdrd
+    icecast:
+        image: infiniteproject/icecast
         ports:
-            - "9002:9000"
+            - "8000:8000"
+        environment:
+            - ICECAST_SOURCE_PASSWORD=source
+            - ICECAST_ADMIN_PASSWORD=admin
+            - ICECAST_RELAY_PASSWORD=relay
+            - ICECAST_ADMIN_USERNAME=admin
+            - ICECAST_ADMIN_EMAIL=ansofive@gmail.com
+            - ICECAST_LOCATION=DM45ee
+            - ICECAST_HOSTNAME=icecast
+            - ICECAST_MAX_CLIENTS=50
+            - ICECAST_MAX_SOURCES=50
         networks:
-            - default
+            sysnet:
+    stream-diag:
+        image: stream-diag
+        build: ./stream-diag
+        networks:
+            sysnet:
+        depends_on:
+            - icecast
+networks:
+    sysnet:
