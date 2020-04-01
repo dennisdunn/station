@@ -17,8 +17,8 @@ RUN apk add --no-cache libusb; \
 COPY --from=build /usr/local/bin/* /usr/local/bin/
 COPY --from=build /usr/local/lib/* /usr/local/lib/
 COPY entrypoint.sh /usr/local/bin/
-COPY ezstream.xml /etc/
-RUN chmod 640 /etc/ezstream.xml
+COPY ezstream.xml /data/
+RUN chmod 640 /data/ezstream.xml
 
 EXPOSE 6020/udp
 
