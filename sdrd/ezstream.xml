@@ -4,11 +4,12 @@
         <server>
             <hostname>icecast</hostname>
             <password>source</password>
+            <reconnect_attempts>10</reconnect_attempts>
         </server>
     </servers>
     <streams>
         <stream>
-        <stream_name>SDR Receiver</stream_name>
+            <stream_name>SDR Receiver</stream_name>
             <mountpoint>/receiver.ogg</mountpoint>
             <format>Ogg</format>
             <encoder>Opus-VBR96</encoder>

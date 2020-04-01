@@ -11,7 +11,7 @@ RUN git clone https://github.com/sysrun/rtl-sdr.git .; \
 
 FROM ezstream
 
-RUN apk add --no-cache libusb; \
+RUN apk add --no-cache libusb vim; \
     echo "blacklist dvb_usb_rtl28xxu" >> /etc/modprobe.d/blacklist.conf
 
 COPY --from=build /usr/local/bin/* /usr/local/bin/
