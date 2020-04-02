@@ -34,12 +34,13 @@ services:
         depends_on:
             - sdrd
     icecast:
-        image: infiniteproject/icecast
+        image: icecast
+        build: ./icecast
         ports:
             - "8000:8000"
         environment:
-            - ICECAST_SOURCE_PASSWORD=source
-            - ICECAST_ADMIN_PASSWORD=admin
+            - ICECAST_SOURCE_PASSWORD=hackme
+            - ICECAST_ADMIN_PASSWORD=hackme
             - ICECAST_RELAY_PASSWORD=relay
             - ICECAST_ADMIN_USERNAME=admin
             - ICECAST_ADMIN_EMAIL=ansofive@gmail.com
@@ -48,7 +49,14 @@ services:
             - ICECAST_MAX_CLIENTS=50
             - ICECAST_MAX_SOURCES=50
         networks:
+            sysnet:    
+    ices:
+        image: ices
+        build: ./ices
+        networks:
             sysnet:
+        depends_on:
+            - icecast
     stream-diag:
         image: stream-diag
         build: ./stream-diag
@@ -56,5 +64,6 @@ services:
             sysnet:
         depends_on:
             - icecast
+            - ices
 networks:
     sysnet:

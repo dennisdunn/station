@@ -9,16 +9,15 @@ RUN git clone https://github.com/sysrun/rtl-sdr.git .; \
     make; \
     make install;
 
-FROM ezstream
+FROM ices
 
-RUN apk add --no-cache libusb vim; \
+RUN apk add --no-cache libusb vorbis-tools vim; \
     echo "blacklist dvb_usb_rtl28xxu" >> /etc/modprobe.d/blacklist.conf
 
 COPY --from=build /usr/local/bin/* /usr/local/bin/
 COPY --from=build /usr/local/lib/* /usr/local/lib/
 COPY entrypoint.sh /usr/local/bin/
-COPY ezstream.xml /data/
-RUN chmod 640 /data/ezstream.xml
+COPY ices.xml /data/
 
 EXPOSE 6020/udp
 

@@ -2,23 +2,22 @@
 <ezstream>
     <servers>
         <server>
-            <hostname>icecast</hostname>
-            <password>source</password>
-            <reconnect_attempts>10</reconnect_attempts>
+            <hostname>localhost</hostname>
+            <password>hackme</password>
         </server>
     </servers>
     <streams>
         <stream>
             <stream_name>SDR Receiver</stream_name>
             <mountpoint>/receiver.ogg</mountpoint>
-            <format>Ogg</format>
+            <format>ogg</format>
             <encoder>Opus-VBR96</encoder>
         </stream>
     </streams>
     <encoders>
         <encoder>
             <name>Opus-VBR96</name>
-            <format>Ogg</format>
+            <format>ogg</format>
             <program>opusenc --vbr --raw --raw-rate 32000 --raw-chan 1 - -</program>
         </encoder>
     </encoders>

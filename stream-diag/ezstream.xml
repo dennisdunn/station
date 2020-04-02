@@ -3,7 +3,7 @@
     <servers>
         <server>
             <hostname>icecast</hostname>
-            <password>source</password>
+            <password>hackme</password>
         </server>
     </servers>
     <streams>
@@ -15,7 +15,7 @@
     </streams>
     <intakes>
         <intake>
-            <filename>playlist.m3u</filename>
+            <filename>playlist.txt</filename>
         </intake>
     </intakes>
 </ezstream>
