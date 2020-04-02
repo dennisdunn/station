@@ -1,4 +1,3 @@
-
 version: "3.7"
 services:
     predictd:
@@ -50,13 +49,6 @@ services:
             - ICECAST_MAX_SOURCES=50
         networks:
             sysnet:    
-    ices:
-        image: ices
-        build: ./ices
-        networks:
-            sysnet:
-        depends_on:
-            - icecast
     stream-diag:
         image: stream-diag
         build: ./stream-diag
@@ -64,6 +56,5 @@ services:
             sysnet:
         depends_on:
             - icecast
-            - ices
 networks:
     sysnet:
