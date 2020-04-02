@@ -1,6 +1,8 @@
-FROM alpine-builder as build
+FROM debian-builder as build
 
 WORKDIR /var/build
+
+RUN apt install -y libusb-1.0-0-dev
 
 RUN git clone https://github.com/sysrun/rtl-sdr.git .; \
     mkdir build; \
@@ -9,15 +11,13 @@ RUN git clone https://github.com/sysrun/rtl-sdr.git .; \
     make; \
     make install;
 
-FROM ices
+RUN apt install -y ices2 opus-tools vorbis-tools vim libusb-1.0-0; 
+#\echo "blacklist dvb_usb_rtl28xxu" >> /etc/modprobe.d/blacklist.conf
 
-RUN apk add --no-cache libusb vorbis-tools vim; \
-    echo "blacklist dvb_usb_rtl28xxu" >> /etc/modprobe.d/blacklist.conf
-
-COPY --from=build /usr/local/bin/* /usr/local/bin/
-COPY --from=build /usr/local/lib/* /usr/local/lib/
 COPY entrypoint.sh /usr/local/bin/
 COPY ices.xml /data/
+
+RUN mkdir -p /var/log/ices
 
 EXPOSE 6020/udp
 

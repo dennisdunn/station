@@ -46,7 +46,7 @@
             <!-- Server details:
                 You define hostname and port for the server here, along with
                 the source password and mountpoint.  -->
-            <hostname>localhost</hostname>
+            <hostname>icecast</hostname>
             <port>8000</port>
             <password>hackme</password>
             <mount>/receiver.ogg</mount>
