@@ -1,5 +1,5 @@
 const dgram = require("dgram");
-const EOF = 0x1A; // ^Z
+const EOF = 0x1a; // ^Z
 
 const connect = (packet, host, port, waitForEof) => {
   return new Promise((resolve, reject) => {
@@ -43,17 +43,17 @@ module.exports = function(RED) {
 
     this.host = config.host;
     this.port = config.port;
-    this.command = config.command;
+    this.packet = config.packet;
     this.eof = config.eof;
 
     var node = this;
     node.on("input", function(msg) {
-      const packet =
-        node.command && node.command !== "" ? node.command : msg.payload;
+      const packet = msg.packet || msg.payload || node.packet;
       const host = msg.host || node.host;
       const port = msg.port || node.port;
+      const eof = msg.eof || node.eof;
 
-      connect(packet, host, +port, node.eof).then(resp => {
+      connect(packet, host, +port, eof).then(resp => {
         msg.payload = resp.toString();
         node.send(msg);
       });
