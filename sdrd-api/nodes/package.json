@@ -8,11 +8,12 @@
   "keywords": [
     "node-red",
     "udp",
-    "dgram"
+    "dgram",
+    "rtl-sdr"
   ],
   "node-red": {
     "nodes": {
-      "dgram": "dgram/dgram.js"
+      "RtlClient": "rtl-sdr/rtl-sdr.js"
     }
   },
   "author": "Dennis Dunn <ansofive@gmail.com>",

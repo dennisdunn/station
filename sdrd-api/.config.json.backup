@@ -357,15 +357,15 @@
      "module": "node-red",
      "file": "/usr/src/node-red/node_modules/@node-red/nodes/core/storage/23-watch.js"
     },
-    "dgram": {
-     "name": "dgram",
+    "rtl-sdr": {
+     "name": "rtl-sdr",
      "types": [
-      "dgram"
+      "rtl-sdr"
      ],
      "enabled": true,
      "local": false,
      "module": "node-red",
-     "file": "/data/nodes/dgram/dgram.js"
+     "file": "/data/nodes/rtl-sdr/rtl-sdr.js"
     }
    }
   },
@@ -621,5 +621,19 @@
    }
   }
  },
- "_credentialSecret": "6b584e9d0761190202000bf5f44e3f16e36ee7c4c165352d4407ca3a18307554"
+ "_credentialSecret": "6b584e9d0761190202000bf5f44e3f16e36ee7c4c165352d4407ca3a18307554",
+ "users": {
+  "_": {
+   "editor": {
+    "view": {
+     "view-show-grid": true,
+     "view-snap-grid": true,
+     "view-grid-size": 20,
+     "view-node-status": true,
+     "view-node-show-label": true,
+     "view-show-tips": true
+    }
+   }
+  }
+ }
 }
