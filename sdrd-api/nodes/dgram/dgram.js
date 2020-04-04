@@ -24,8 +24,7 @@ const connect = (packet, host, port, waitForEof) => {
     });
 
     socket.on("error", err => {
-      console.error(err);
-      socket.close();
+        reject(err);
     });
 
     const req = Buffer.from(packet);
@@ -53,7 +52,7 @@ module.exports = function(RED) {
       const port = msg.port || node.port;
       const eof = msg.eof || node.eof;
 
-      connect(packet, host, +port, eof).then(resp => {
+      connect(packet, host, Number.parseInt(port), eof).then(resp => {
         msg.payload = resp.toString();
         node.send(msg);
       });
