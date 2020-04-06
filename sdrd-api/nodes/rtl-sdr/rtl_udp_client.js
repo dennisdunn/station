@@ -36,7 +36,8 @@ const parseMode = (data) => {
 };
 
 const parseGain = (data) => {
-  return data === "auto" ? -100 : Number.parseFloat(data);
+  const value = Number.parseFloat(data);
+  return data === "auto" || value < 0 ? -100 : value;
 };
 
 exports.send = (host, port, packet, waitForEof) => {

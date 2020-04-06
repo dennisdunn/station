@@ -60,5 +60,20 @@ services:
             sysnet:
         depends_on:
             - icecast
+    db:
+        image: couchdb
+        volumes:
+            - type: volume
+              source: dbdata
+              target: /opt/couchdb/data
+        ports:
+            - "5984:5984"
+        environment:
+            - COUCHDB_USER=admin
+            - COUCHDB_PASSWORD=password 
+        networks:
+            sysnet:    
 networks:
     sysnet:
+volumes:
+    dbdata:
