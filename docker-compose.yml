@@ -23,6 +23,8 @@ services:
             - "1881:1880"
         networks:
             sysnet:
+        volumes:
+            - ./predictd-api:/data
         depends_on:
             - predictd
     sdrd-api:
