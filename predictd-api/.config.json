@@ -633,7 +633,8 @@
      "view-node-show-label": true,
      "view-show-tips": false
     }
-   }
+   },
+   "menu-menu-item-sidebar": true
   }
  }
 }

@@ -1,0 +1,4 @@
+// name: west-to-east-lon
+// outputs: 1
+msg.payload.lon *= -1;
+return msg;

@@ -1,0 +1,11 @@
+// name: partial-response
+// outputs: 1
+if(msg.req.query.fields){
+    const payload = {}
+    const fields = msg.req.query.fields.split(',');
+    fields.forEach(key=>{
+        payload[key]=msg.payload[key];
+    })
+    msg.payload = payload;
+}
+return msg;
