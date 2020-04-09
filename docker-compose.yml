@@ -74,7 +74,7 @@ services:
             - COUCHDB_USER=admin
             - COUCHDB_PASSWORD=password 
         networks:
-            sysnet:    
+            sysnet:
 networks:
     sysnet:
 volumes:
