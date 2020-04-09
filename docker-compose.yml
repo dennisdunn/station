@@ -6,6 +6,7 @@ services:
         tty: true
         networks:
             sysnet:
+        restart: unless-stopped
     sdrd:
         image: sdrd
         build: ./sdrd
@@ -16,6 +17,7 @@ services:
             sysnet:
         depends_on:
             - icecast
+        restart: unless-stopped
     predictd-api:
         image: predictd-api
         build: ./predictd-api
@@ -27,6 +29,7 @@ services:
             - ./predictd-api:/data
         depends_on:
             - predictd
+        restart: unless-stopped
     sdrd-api:
         image: sdrd-api
         build: ./sdrd-api
@@ -38,6 +41,7 @@ services:
             - ./sdrd-api:/data
         depends_on:
             - sdrd
+        restart: unless-stopped
     icecast:
         image: icecast
         build: ./icecast
@@ -54,7 +58,8 @@ services:
             - ICECAST_MAX_CLIENTS=50
             - ICECAST_MAX_SOURCES=50
         networks:
-            sysnet:    
+            sysnet:
+        restart: unless-stopped
     stream-diag:
         image: stream-diag
         build: ./stream-diag
@@ -62,6 +67,7 @@ services:
             sysnet:
         depends_on:
             - icecast
+        restart: unless-stopped
     db:
         image: couchdb
         volumes:
@@ -75,6 +81,7 @@ services:
             - COUCHDB_PASSWORD=password 
         networks:
             sysnet:
+        restart: unless-stopped
 networks:
     sysnet:
 volumes:
