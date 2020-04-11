@@ -11,13 +11,21 @@ RUN git clone https://github.com/sysrun/rtl-sdr.git .; \
     make; \
     make install;
 
-RUN apt install -y ices2 opus-tools vorbis-tools vim libusb-1.0-0; 
+FROM debian:buster-slim
+
+WORKDIR /data
+
+RUN apt update; \
+    apt install -y ices2 opus-tools vorbis-tools vim libusb-1.0-0; 
 #\echo "blacklist dvb_usb_rtl28xxu" >> /etc/modprobe.d/blacklist.conf
 
+COPY --from=build /usr/local/bin/ /usr/local/bin/
+COPY --from=build /usr/local/lib/ /usr/local/lib/
 COPY entrypoint.sh /usr/local/bin/
 COPY ices.xml /data/
 
-RUN mkdir -p /var/log/ices
+RUN ldconfig; \
+    mkdir -p /var/log/ices
 
 EXPOSE 6020/udp
 

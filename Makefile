@@ -11,6 +11,3 @@ alpine: base/alpine/Dockerfile
 
 ezstream: alpine base/ezstream/Dockerfile
 	docker build -t ezstream base/ezstream
-
-run: all
-	docker-compose up -d
