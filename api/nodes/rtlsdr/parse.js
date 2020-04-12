@@ -1,6 +1,3 @@
-const dgram = require("dgram");
-const EOF = 0x1a; // ^Z
-
 const parseTruthy = (data) => {
   if (typeof data === "string") {
     return data.startsWith("t") ||
@@ -40,44 +37,7 @@ const parseGain = (data) => {
   return data === "auto" || value < 0 ? -100 : value;
 };
 
-exports.send = (host, port, packet, waitForEof) => {
-  return new Promise((resolve, reject) => {
-    const socket = dgram.createSocket("udp4");
-    let buffer = Buffer.from([]);
-
-    const handleError = (err) => {
-      reject(err);
-      socket.close();
-    };
-
-    const handleCompletion = (err) => {
-      if (err) {
-        handleError(err);
-      } else {
-        if (!waitForEof) {
-          resolve("ok");
-          socket.close();
-        }
-      }
-    };
-
-    socket.on("message", (msg, rinfo) => {
-      buffer = buffer.concat(msg);
-      if (msg[0] === EOF) {
-        resolve(buffer);
-        socket.close();
-      } else {
-        buffer = buffer.concat(msg);
-      }
-    });
-
-    socket.on("error", handleError);
-
-    socket.send(packet, 0, packet.length, port, host, handleCompletion);
-  });
-};
-
-exports.parse = (message) => {
+module.exports = (message) => {
   const [command, data] = message.toLowerCase().split(" ");
   const bytes = new ArrayBuffer(5);
   const buffer = new Uint8Array(bytes);

@@ -3,9 +3,12 @@ services:
     predictd:
         image: predictd
         build: ./predictd
+        ports:
+            - "1210:1210/udp"
         tty: true
         networks:
             sysnet:
+        restart: unless-stopped
     sdrd:
         image: sdrd
         build: ./sdrd
@@ -14,31 +17,16 @@ services:
         privileged: true
         networks:
             sysnet:
-        depends_on:
-            - icecast
-    predictd-api:
-        image: predictd-api
-        build: ./predictd-api
+        restart: unless-stopped
+    api:
+        image: api
+        build: ./api
         ports:
-            - "1881:1880"
+            - "1880:1880"
         networks:
             sysnet:
-        volumes:
-            - ./predictd-api:/data
-        depends_on:
-            - predictd
-    sdrd-api:
-        image: sdrd-api
-        build: ./sdrd-api
-        ports:
-            - "1882:1880"
-        networks:
-            - sysnet
-        volumes:
-            - ./sdrd-api:/data
-        depends_on:
-            - sdrd
-    icecast:
+        restart: unless-stopped
+    stream:
         image: icecast
         build: ./icecast
         ports:
@@ -50,32 +38,11 @@ services:
             - ICECAST_ADMIN_USERNAME=admin
             - ICECAST_ADMIN_EMAIL=ansofive@gmail.com
             - ICECAST_LOCATION=DM45ee
-            - ICECAST_HOSTNAME=icecast
+            - ICECAST_HOSTNAME=stream
             - ICECAST_MAX_CLIENTS=50
             - ICECAST_MAX_SOURCES=50
         networks:
-            sysnet:    
-    stream-diag:
-        image: stream-diag
-        build: ./stream-diag
-        networks:
             sysnet:
-        depends_on:
-            - icecast
-    db:
-        image: couchdb
-        volumes:
-            - type: volume
-              source: dbdata
-              target: /opt/couchdb/data
-        ports:
-            - "5984:5984"
-        environment:
-            - COUCHDB_USER=admin
-            - COUCHDB_PASSWORD=password 
-        networks:
-            sysnet:    
+        restart: unless-stopped
 networks:
     sysnet:
-volumes:
-    dbdata:

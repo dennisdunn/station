@@ -1,4 +1,4 @@
-FROM alpine-builder as builder
+FROM dennisdunn/alpine-builder as builder
 
 WORKDIR /build
 

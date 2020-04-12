@@ -1,24 +1,23 @@
 <script type="text/javascript">
-    RED.nodes.registerType('rtl-sdr', {
+    RED.nodes.registerType('dgram', {
         category: 'network',
         color: '#a6bbcf',
         defaults: {
             name: { value: "" },
             host: { value: "" },
-            port: { value: "" },
-            packet: { value: "" },
-            eof: { value: false }
+            port: { value: 0 },
+            packet: { value: "" }
         },
         inputs: 1,
         outputs: 1,
         icon: "feed.png",
         label: function () {
-            return this.name || "rtl-sdr";
+            return this.name || "dgram";
         }
     });
 </script>
 
-<script type="text/html" data-template-name="rtl-sdr">
+<script type="text/html" data-template-name="dgram">
     <div class="form-row">
         <label for="node-input-name"><i class="icon-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
@@ -35,25 +34,8 @@
         <label for="node-input-packet"><i class="icon-tag"></i> Packet</label>
         <input type="text" id="node-input-packet" placeholder="Packet">
     </div>
-    <div class="form-row">
-        <label for="node-input-eof"><i class="icon-tag"></i> Wait for EOF?</label>
-        <input type="checkbox" id="node-input-eof" placeholder="EOF?">
-    </div>
 </script>
 
-<script type="text/html" data-help-name="rtl-sdr">
-    <p>Send the payload as a datagram packet to the host:port. Properties on the message
-        override the node configuration. If the message contains a <strong>packet</strong> 
-        property it will be used instead of the messages payload.
-    </p>
-        <h3>Packets</h3>
-    <p>Packets consist of a command and data.
-    </p>
-        <ul>
-            <li>freq <f>[mk]</li>
-            <li>squelch <s></li>
-            <li>gain auto | <g></li>
-            <li>mode fm | am | lsb | usb | <m></li>
-            <li>agc t | y | 1 | <a></li>
-        </ul>
+<script type="text/html" data-help-name="dgram">
+    <p>Send the payload as a datagram packet to the host:port.</p>
 </script>

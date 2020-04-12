@@ -1,0 +1,44 @@
+<script type="text/javascript">
+    RED.nodes.registerType('rtlsdr', {
+        category: 'parser',
+        color: '#a6bbcf',
+        defaults: {
+            name: { value: "" },
+        },
+        inputs: 1,
+        outputs: 1,
+        icon: "template.png",
+        label: function () {
+            return this.name || "rtl-sdr";
+        }
+    });
+</script>
+
+<script type="text/html" data-template-name="rtlsdr">
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+</script>
+
+<script type="text/html" data-help-name="rtlsdr">
+    <p>Parse an HTTP post request as a command/data pair for the SDR control
+        process.
+    </p>
+    <h3>Inputs</h3>
+  <p>  The payload can be a string or an object. If it is an object, the command data is 
+    taken from the .data property of the payload, ohterwise it the command data is the payload.    </p>
+    <p>The command is taken from the route via msg.req.params.prop    </p>
+    <h3>Outputs</h3>
+Sets the message payload to a buffer that contains the UDP packet for an <em>rtl_udp</em> process.
+        <h4>Packets</h4>
+    <p>Packets consist of a command and data.
+    </p>
+        <ul>
+            <li>freq <f>[mk]</li>
+            <li>squelch <s></li>
+            <li>gain auto | <g></li>
+            <li>mode fm | am | lsb | usb | <m></li>
+            <li>agc t | y | 1 | <a></li>
+        </ul>
+</script>

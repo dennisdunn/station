@@ -1,4 +1,0 @@
-// name: epoch-to-js
-// outputs: 1
-msg.payload.nextEvent *= 1e3;
-return msg;

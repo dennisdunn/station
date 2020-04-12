@@ -18,7 +18,7 @@
         <metadata>
             <name>SDR Receiver</name>
             <genre>SDR</genre>
-            <description>A Noelec SDR receiver.</description>
+            <description>A Noolec SDR receiver.</description>
         </metadata>
 
         <!-- input module -->
@@ -46,10 +46,10 @@
             <!-- Server details:
                 You define hostname and port for the server here, along with
                 the source password and mountpoint.  -->
-            <hostname>icecast</hostname>
+            <hostname>stream</hostname>
             <port>8000</port>
             <password>hackme</password>
-            <mount>/receiver.ogg</mount>
+            <mount>/nooelec.ogg</mount>
 
             <!-- Reconnect parameters:
                 When something goes wrong (e.g. the server crashes, or the
@@ -61,7 +61,7 @@
                 if you do this.
             -->
             <reconnectdelay>2</reconnectdelay>
-            <reconnectattempts>5</reconnectattempts>
+            <reconnectattempts>-1</reconnectattempts>
 
             <!-- maxqueuelength:
                 This describes how long the internal data queues may be. This
@@ -80,7 +80,7 @@
                 Remove this section if you don't want your files getting reencoded.
             -->
             <encode>
-                <nominal-bitrate>64000</nominal-bitrate>                <!-- bps. e.g. 64000 for 64 kbps -->
+                <nominal-bitrate>64000</nominal-bitrate> <!-- bps. e.g. 64000 for 64 kbps -->
                 <samplerate>32000</samplerate>
                 <channels>1</channels>
             </encode>
