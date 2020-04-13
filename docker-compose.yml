@@ -44,5 +44,17 @@ services:
         networks:
             sysnet:
         restart: unless-stopped
+    alpine-builder:
+        image: alpine-builder
+        build: 
+            context: ./build
+            dockerfile: Dockerfile.alpine
+        command: ["true"]
+    debian-builder:
+        image: debian-builder
+        build: 
+            context: ./build
+            dockerfile: Dockerfile.debian
+        command: ["true"]
 networks:
     sysnet:
