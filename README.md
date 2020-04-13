@@ -1,4 +1,3 @@
 # Satelite Ground Station
 
-## Dependencies
-The `alpine-builder` image is used by some of the dockerfiles.
+This is the back-end for a satellite ground station and is built with Docker containers.
