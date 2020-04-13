@@ -1,7 +1,5 @@
 FROM debian-builder as build
 
-WORKDIR /var/build
-
 RUN apt install -y libusb-1.0-0-dev
 
 RUN git clone https://github.com/sysrun/rtl-sdr.git .; \

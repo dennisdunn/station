@@ -1,6 +1,4 @@
-FROM dennisdunn/alpine-builder as build
-
-WORKDIR /var/build
+FROM alpine-builder as build
 
 RUN apk update; \
     apk add libxslt-dev libogg-dev libvorbis-dev;
