@@ -1,13 +1,8 @@
-.PHONY: all debian alpine ezstream run
+.PHONY: all factory station
 
-all: debian alpine ezstream docker-compose.yml
+all: 
 	docker-compose build
 
-debian: base/debian/Dockerfile
-	docker build -t debian-builder base/debian
-
-alpine: base/alpine/Dockerfile
-	docker build -t alpine-builder base/alpine
-
-ezstream: alpine base/ezstream/Dockerfile
-	docker build -t ezstream base/ezstream
+factory:
+	docker build -t alpine-builder -f build/alpine.Dockerfile ./build
+	docker build -t debian-builder -f build/debian.Dockerfile ./build

@@ -1,5 +1,5 @@
 {
-  "name": "predictd-api-nodes",
+  "name": "sat-station-api",
   "version": "0.1.0",
   "description": "",
   "scripts": {
@@ -12,7 +12,8 @@
   ],
   "node-red": {
     "nodes": {
-      "dgram": "dgram/dgram.js"
+      "dgram": "dgram/dgram.js",
+      "rtlsdr": "rtlsdr/rtlsdr.js"
     }
   },
   "author": "Dennis Dunn <ansofive@gmail.com>",

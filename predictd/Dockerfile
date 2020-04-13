@@ -1,7 +1,5 @@
 FROM alpine-builder as builder
 
-WORKDIR /build
-
 RUN git clone https://github.com/kd2bd/predict . \
     && echo "y" | ./configure
 
