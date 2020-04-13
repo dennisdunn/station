@@ -48,13 +48,13 @@ services:
         image: alpine-builder
         build: 
             context: ./build
-            dockerfile: Dockerfile.alpine
+            dockerfile: alpine.Dockerfile
         command: ["true"]
     debian-builder:
         image: debian-builder
         build: 
             context: ./build
-            dockerfile: Dockerfile.debian
+            dockerfile: debian.Dockerfile
         command: ["true"]
 networks:
     sysnet:
