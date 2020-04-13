@@ -1,6 +1,6 @@
 .PHONY: all factory station
 
-all: 
+all: factory 
 	docker-compose build
 
 factory:
