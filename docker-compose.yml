@@ -6,8 +6,6 @@ services:
         ports:
             - "1210:1210/udp"
         tty: true
-        networks:
-            sysnet:
         restart: unless-stopped
     sdrd:
         image: sdrd
@@ -15,16 +13,14 @@ services:
         ports:
             - "6020:6020/udp"
         privileged: true
-        networks:
-            sysnet:
         restart: unless-stopped
     api:
         image: api
         build: ./api
         ports:
             - "1880:1880"
-        networks:
-            sysnet:
+        volumes:
+            - "./api:/data"
         restart: unless-stopped
     stream:
         image: icecast
@@ -41,8 +37,4 @@ services:
             - ICECAST_HOSTNAME=stream
             - ICECAST_MAX_CLIENTS=50
             - ICECAST_MAX_SOURCES=50
-        networks:
-            sysnet:
         restart: unless-stopped
-networks:
-    sysnet:
