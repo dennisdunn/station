@@ -19,8 +19,6 @@ services:
         build: ./api
         ports:
             - "1880:1880"
-        volumes:
-            - "./api:/data"
         restart: unless-stopped
     stream:
         image: icecast
@@ -38,3 +36,4 @@ services:
             - ICECAST_MAX_CLIENTS=50
             - ICECAST_MAX_SOURCES=50
         restart: unless-stopped
+
