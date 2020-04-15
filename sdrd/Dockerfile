@@ -1,8 +1,8 @@
-FROM debian-builder as build
+FROM alpine-builder as build
 
 WORKDIR /var/build
 
-RUN apt install -y libusb-1.0-0-dev
+RUN apk add libusb-dev
 
 RUN git clone https://github.com/sysrun/rtl-sdr.git .; \
     mkdir build; \
@@ -11,19 +11,17 @@ RUN git clone https://github.com/sysrun/rtl-sdr.git .; \
     make; \
     make install;
 
-FROM debian:buster-slim
+FROM alpine
 
-RUN apt update; \
-    apt install -y ices2 vim-nox libusb-1.0-0; 
+RUN apk update; \
+    apk upgrade; \
+    apk add ices vim libusb
 
 COPY --from=build /usr/local/bin/ /usr/local/bin/
 COPY --from=build /usr/local/lib/ /usr/local/lib/
 
+COPY ices.xml /etc
 COPY entrypoint.sh /usr/local/bin/
-COPY ices.xml /data/
-
-RUN ldconfig; \
-    mkdir -p /var/log/ices
 
 EXPOSE 6020/udp
 

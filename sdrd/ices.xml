@@ -3,7 +3,7 @@
     <!-- run in background -->
     <background>0</background>
     <!-- where logs, etc go. -->
-    <logpath>/var/log/ices</logpath>
+    <logpath>/var/log</logpath>
     <logfile>ices.log</logfile>
     <!-- 1=error,2=warn,3=info,4=debug -->
     <loglevel>4</loglevel>
@@ -16,9 +16,9 @@
     <stream>
         <!-- metadata used for stream listing (not currently used) -->
         <metadata>
-            <name>SDR Receiver</name>
+            <name>Radio</name>
             <genre>SDR</genre>
-            <description>A Noolec SDR receiver.</description>
+            <description>An SDR receiver.</description>
         </metadata>
 
         <!-- input module -->
@@ -46,10 +46,10 @@
             <!-- Server details:
                 You define hostname and port for the server here, along with
                 the source password and mountpoint.  -->
-            <hostname>stream</hostname>
+            <hostname>icecast</hostname>
             <port>8000</port>
             <password>hackme</password>
-            <mount>/nooelec.ogg</mount>
+            <mount>/radio.ogg</mount>
 
             <!-- Reconnect parameters:
                 When something goes wrong (e.g. the server crashes, or the
